@@ -6,7 +6,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "lint": "eslint assets/js",
     "lint:fix": "eslint assets/js --fix",
     "format": "prettier --write \"**/*.{js,json,css,md,html}\"",
@@ -22,9 +22,11 @@
     "@eslint/json": "^0.14.0",
     "eslint": "^9.39.1",
     "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-jest": "^29.2.1",
     "eslint-plugin-prettier": "^5.5.4",
     "globals": "^16.5.0",
     "husky": "^9.1.7",
+    "jest": "^30.2.0",
     "lint-staged": "^16.2.7",
     "prettier": "^3.7.4"
   }

@@ -3,7 +3,8 @@ import globals from 'globals';
 import json from '@eslint/json';
 import css from '@eslint/css';
 import { defineConfig } from 'eslint/config';
-import eslintPluginPrettier from 'eslint-plugin-prettier/recommended';
+import pluginPrettier from 'eslint-plugin-prettier/recommended';
+import pluginJest from 'eslint-plugin-jest';
 
 export default defineConfig([
   {
@@ -12,7 +13,12 @@ export default defineConfig([
     extends: ['js/recommended'],
     languageOptions: { globals: globals.browser },
   },
+  {
+    files: ['**/*.spec.js', '**/*.test.js'],
+    plugins: { jest: pluginJest },
+    languageOptions: { globals: pluginJest.environments.globals.globals },
+  },
   { files: ['**/*.json'], plugins: { json }, language: 'json/json', extends: ['json/recommended'] },
   { files: ['**/*.css'], plugins: { css }, language: 'css/css', extends: ['css/recommended'] },
-  eslintPluginPrettier,
+  pluginPrettier,
 ]);
