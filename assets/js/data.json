@@ -3,32 +3,88 @@
     "id": 1,
     "name": "UBS Central de Valparaíso",
     "type": "UBS",
-    "coords": [-16.0683, -47.986],
-    "hours": "Seg-Sex, 08:00 - 17:00",
-    "address": "Quadra 01, Área Especial, Valparaíso I"
+    "schedule": {
+      "openingTimeInMinutes": 480,
+      "closingTimeInMinutes": 1020,
+      "availableDaysOfWeek": [1, 2, 3, 4, 5],
+      "is24h": false
+    },
+    "location": {
+      "streetAddress": "Quadra 01, Área Especial",
+      "neighborhood": "Valparaíso I",
+      "city": "Valparaíso de Goiás",
+      "state": "GO",
+      "geolocation": {
+        "latitude": -16.0683,
+        "longitude": -47.986
+      }
+    },
+    "specialties": ["Clínica Geral", "Pediatria", "Ginecologia"]
   },
   {
     "id": 2,
     "name": "UPA 24h Céu Azul",
     "type": "UPA",
-    "coords": [-16.075, -48.0015],
-    "hours": "24 horas",
-    "address": "Av. dos Ipês, Quadra 15, Céu Azul"
+    "schedule": {
+      "openingTimeInMinutes": 0,
+      "closingTimeInMinutes": 1439,
+      "availableDaysOfWeek": [0, 1, 2, 3, 4, 5, 6],
+      "is24h": true
+    },
+    "location": {
+      "streetAddress": "Av. dos Ipês, Quadra 15",
+      "neighborhood": "Céu Azul",
+      "city": "Valparaíso de Goiás",
+      "state": "GO",
+      "geolocation": {
+        "latitude": -16.075,
+        "longitude": -48.0015
+      }
+    },
+    "specialties": ["Clínica Geral", "Ortopedia", "Cardiologia"]
   },
   {
     "id": 3,
     "name": "Hospital Municipal de Urgência",
     "type": "Hospital",
-    "coords": [-16.0601, -47.9755],
-    "hours": "24 horas",
-    "address": "Rua do Comércio, Setor Central"
+    "schedule": {
+      "openingTimeInMinutes": 0,
+      "closingTimeInMinutes": 1439,
+      "availableDaysOfWeek": [0, 1, 2, 3, 4, 5, 6],
+      "is24h": true
+    },
+    "location": {
+      "streetAddress": "Rua do Comércio, Setor Central",
+      "neighborhood": "Setor Central",
+      "city": "Valparaíso de Goiás",
+      "state": "GO",
+      "geolocation": {
+        "latitude": -16.0601,
+        "longitude": -47.9755
+      }
+    },
+    "specialties": ["Clínica Geral", "Cirurgia", "Pediatria", "Traumatologia"]
   },
   {
     "id": 4,
     "name": "UBS Novo Oriente",
     "type": "UBS",
-    "coords": [-16.0822, -47.995],
-    "hours": "Seg-Sex, 08:00 - 17:00",
-    "address": "Quadra 47, Setor Novo Oriente"
+    "schedule": {
+      "openingTimeInMinutes": 540,
+      "closingTimeInMinutes": 1080,
+      "availableDaysOfWeek": [1, 2, 3, 4, 5],
+      "is24h": false
+    },
+    "location": {
+      "streetAddress": "Quadra 47",
+      "neighborhood": "Novo Oriente",
+      "city": "Valparaíso de Goiás",
+      "state": "GO",
+      "geolocation": {
+        "latitude": -16.0822,
+        "longitude": -47.995
+      }
+    },
+    "specialties": ["Odontologia", "Psicologia", "Ginecologia"]
   }
 ]
