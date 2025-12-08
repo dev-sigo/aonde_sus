@@ -3,7 +3,7 @@ import { jest } from '@jest/globals';
 global.console.error = jest.fn();
 global.fetch = jest.fn();
 
-import { loadHealthUnits } from '../assets/js/app.js';
+import { getHealthUnitsData } from '../assets/js/app.js';
 
 const mockData = [
   {
@@ -36,7 +36,7 @@ describe('Load data', () => {
       json: async () => mockData,
     });
 
-    const units = await loadHealthUnits();
+    const units = await getHealthUnitsData();
 
     expect(fetch).toHaveBeenCalledWith('./assets/js/data.json');
     expect(units).toEqual(mockData);
@@ -47,7 +47,7 @@ describe('Load data', () => {
     const networkError = new Error('Failed to fetch data due to network issues');
     fetch.mockRejectedValueOnce(networkError);
 
-    const units = await loadHealthUnits();
+    const units = await getHealthUnitsData();
 
     expect(units).toEqual([]);
     expect(console.error).toHaveBeenCalledWith('Error loading health units data:', networkError);
@@ -61,7 +61,7 @@ describe('Load data', () => {
       json: async () => ({}),
     });
 
-    const units = await loadHealthUnits();
+    const units = await getHealthUnitsData();
 
     expect(units).toEqual([]);
     expect(console.error).toHaveBeenCalledWith('Error loading health units data:', httpError);

@@ -1,12 +1,13 @@
 const DATA_URL = './assets/js/data.json';
 
 /**
- * Função assíncrona para carregar dados de unidades de saúde de forma robusta.
- * Garante que a aplicação não quebre em caso de falha de rede ou HTTP.
+ * Busca e carrega a lista de unidades de saúde de forma segura,
+ * garantindo que a aplicação não pare de funcionar (quebrar)
+ * em caso de falhas de conexão ou erros de servidor.
  *
- * @returns {Promise<Array>} Um array de unidades de saúde ou um array vazio em caso de falha.
+ * @returns {Promise<Array>} Retorna a lista de unidades ou um array vazio se houver erro.
  */
-export async function loadHealthUnits() {
+export async function getHealthUnitsData() {
   try {
     const response = await fetch(DATA_URL);
 
