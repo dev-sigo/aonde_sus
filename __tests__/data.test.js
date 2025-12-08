@@ -52,13 +52,13 @@ const mockData = [
   },
 ];
 
-describe('Load data', () => {
+describe('Função [ getHealthUnitsData ] (Carregamento de Dados)', () => {
   beforeEach(() => {
     fetch.mockClear();
     console.error.mockClear();
   });
 
-  test('should fetch the data.json file and return the parsed content', async () => {
+  test('Deve buscar o arquivo data.json e retornar o conteúdo estruturado com sucesso', async () => {
     fetch.mockResolvedValueOnce({
       ok: true,
       json: async () => mockData,
@@ -71,7 +71,7 @@ describe('Load data', () => {
     expect(units.length).toBe(2);
   });
 
-  test('should return an empty array and log an error if the fetch call fails (network issue)', async () => {
+  test('Deve retornar um array vazio e logar erro se a chamada de rede falhar', async () => {
     const networkError = new Error('Failed to fetch data due to network issues');
     fetch.mockRejectedValueOnce(networkError);
 
@@ -81,7 +81,7 @@ describe('Load data', () => {
     expect(console.error).toHaveBeenCalledWith('Error loading health units data:', networkError);
   });
 
-  test('should return an empty array and log error if the HTTP response is not ok (e.g., 404)', async () => {
+  test('Deve retornar um array vazio e logar erro se a resposta HTTP não for 200', async () => {
     const httpError = new Error('HTTP error 404 (Not Found)');
     fetch.mockResolvedValueOnce({
       ok: false,
