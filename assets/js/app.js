@@ -1,14 +1,15 @@
-import { loadHealthUnits } from './dataHandler.js';
-
-export { loadHealthUnits };
+import { getHealthUnitsData } from './dataHandler.js';
 
 /**
- * Inicia o carregamento dos dados e prepara a aplicação no lado do cliente.
- * Esta função deve ser chamada APENAS no navegador.
+ * Prepara e inicia a aplicação no navegador (browser),
+ * garantindo que os dados sejam carregados e a interface montada somente
+ * depois que todo o HTML estiver pronto para interagir.
+ *
+ * Nota: Esta função é ignorada durante a execução de testes (Jest).
  */
 function initApp() {
   document.addEventListener('DOMContentLoaded', () => {
-    loadHealthUnits()
+    getHealthUnitsData()
       .then((units) => {
         console.log('Dados prontos para renderização:', units);
       })
@@ -21,3 +22,5 @@ function initApp() {
 if (typeof document !== 'undefined') {
   initApp();
 }
+
+export { getHealthUnitsData };
