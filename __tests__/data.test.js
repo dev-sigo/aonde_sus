@@ -10,17 +10,45 @@ const mockData = [
     id: 1,
     name: 'UBS Central de Valparaíso',
     type: 'UBS',
-    coords: [-16.0683, -47.986],
-    hours: 'Seg-Sex, 08:00 - 17:00',
-    address: 'Quadra 01, Área Especial, Valparaíso I',
+    schedule: {
+      openingTimeInMinutes: 480,
+      closingTimeInMinutes: 1020,
+      availableDaysOfWeek: [1, 2, 3, 4, 5],
+      is24h: false,
+    },
+    location: {
+      streetAddress: 'Quadra 01, Área Especial',
+      neighborhood: 'Valparaíso I',
+      city: 'Valparaíso de Goiás',
+      state: 'GO',
+      geolocation: {
+        latitude: -16.0683,
+        longitude: -47.986,
+      },
+    },
+    specialties: ['Clínica Geral', 'Pediatria', 'Ginecologia'],
   },
   {
     id: 2,
     name: 'UPA 24h Céu Azul',
     type: 'UPA',
-    coords: [-16.075, -48.0015],
-    hours: '24 horas',
-    address: 'Av. dos Ipês, Quadra 15, Céu Azul',
+    schedule: {
+      openingTimeInMinutes: 0,
+      closingTimeInMinutes: 1439,
+      availableDaysOfWeek: [0, 1, 2, 3, 4, 5, 6],
+      is24h: true,
+    },
+    location: {
+      streetAddress: 'Av. dos Ipês, Quadra 15',
+      neighborhood: 'Céu Azul',
+      city: 'Valparaíso de Goiás',
+      state: 'GO',
+      geolocation: {
+        latitude: -16.075,
+        longitude: -48.0015,
+      },
+    },
+    specialties: ['Clínica Geral', 'Ortopedia', 'Cardiologia'],
   },
 ];
 
