@@ -1,4 +1,5 @@
 import { getHealthUnitsData } from './dataHandler.js';
+import { filterHealthUnits } from './dataFilter.js';
 
 /**
  * Prepara e inicia a aplicação no navegador (browser),
@@ -23,4 +24,4 @@ if (typeof document !== 'undefined') {
   initApp();
 }
 
-export { getHealthUnitsData };
+export { getHealthUnitsData, filterHealthUnits };
