@@ -6,7 +6,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "node --no-warnings --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "test": "node --no-warnings --experimental-vm-modules node_modules/jest/bin/jest.js --verbose",
     "lint": "eslint assets/js",
     "lint:fix": "eslint assets/js --fix",
     "format": "prettier --write \"**/*.{js,json,css,md,html}\"",
