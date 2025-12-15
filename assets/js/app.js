@@ -1,5 +1,5 @@
-import { getHealthUnitsData } from './dataHandler.js';
-import { filterHealthUnits, getUtcMinutesOfDay } from './dataFilter.js';
+import { getHealthUnitsData } from './healthUnitsService.js';
+import { filterHealthUnits, getUtcMinutesOfDay } from './healthUnitsFilter.js';
 
 /**
  * Prepara e inicia a aplicação no navegador (browser),

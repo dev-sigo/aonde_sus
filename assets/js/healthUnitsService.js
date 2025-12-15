@@ -1,4 +1,4 @@
-const DATA_URL = './assets/js/data.json';
+const DATA_URL = './assets/js/healthUnits.json';
 
 /**
  * Busca e carrega a lista de unidades de saúde de forma segura,
