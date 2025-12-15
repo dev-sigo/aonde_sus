@@ -3,7 +3,7 @@ import { jest } from '@jest/globals';
 global.console.error = jest.fn();
 global.fetch = jest.fn();
 
-import { getHealthUnitsData } from '../assets/js/app.js';
+import { getHealthUnitsData } from '../../assets/js/app.js';
 
 const mockData = [
   {
