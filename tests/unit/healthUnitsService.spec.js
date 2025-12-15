@@ -66,7 +66,7 @@ describe('Função [ getHealthUnitsData ] (Carregamento de Dados)', () => {
 
     const units = await getHealthUnitsData();
 
-    expect(fetch).toHaveBeenCalledWith('./assets/js/data.json');
+    expect(fetch).toHaveBeenCalledWith('./assets/js/healthUnits.json');
     expect(units).toEqual(mockData);
     expect(units.length).toBe(2);
   });
