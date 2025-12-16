@@ -1,4 +1,4 @@
-export const mockData = [
+export const mockHealthUnits = [
   {
     id: 1,
     name: 'UBS Central de Valparaíso',
