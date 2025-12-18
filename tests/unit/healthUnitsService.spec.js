@@ -1,97 +1,97 @@
-import { jest } from '@jest/globals';
+import { afterEach, describe, jest, test } from '@jest/globals';
+import { getHealthUnitsData, getAllSpecialties, getUnitTypes } from '../../assets/js/healthUnitsService.js';
+import { mockHealthUnits } from '../fixtures/mockData/healthUnitsService.js';
 
-global.console.error = jest.fn();
-global.fetch = jest.fn();
-
-import { getHealthUnitsData } from '../../assets/js/app.js';
-
-const mockData = [
-  {
-    id: 1,
-    name: 'UBS Central de Valparaíso',
-    type: 'UBS',
-    schedule: {
-      openingTimeInMinutes: 480,
-      closingTimeInMinutes: 1020,
-      availableDaysOfWeek: [1, 2, 3, 4, 5],
-      is24h: false,
-    },
-    location: {
-      streetAddress: 'Quadra 01, Área Especial',
-      neighborhood: 'Valparaíso I',
-      city: 'Valparaíso de Goiás',
-      state: 'GO',
-      geolocation: {
-        latitude: -16.0683,
-        longitude: -47.986,
-      },
-    },
-    specialties: ['Clínica Geral', 'Pediatria', 'Ginecologia'],
-  },
-  {
-    id: 2,
-    name: 'UPA 24h Céu Azul',
-    type: 'UPA',
-    schedule: {
-      openingTimeInMinutes: 0,
-      closingTimeInMinutes: 1439,
-      availableDaysOfWeek: [0, 1, 2, 3, 4, 5, 6],
-      is24h: true,
-    },
-    location: {
-      streetAddress: 'Av. dos Ipês, Quadra 15',
-      neighborhood: 'Céu Azul',
-      city: 'Valparaíso de Goiás',
-      state: 'GO',
-      geolocation: {
-        latitude: -16.075,
-        longitude: -48.0015,
-      },
-    },
-    specialties: ['Clínica Geral', 'Ortopedia', 'Cardiologia'],
-  },
-];
-
-describe('Função [ getHealthUnitsData ] (Carregamento de Dados)', () => {
+describe('Função [ getHealthUnitsData ]', () => {
   beforeEach(() => {
+    global.console.error = jest.fn();
+    global.fetch = jest.fn();
+  });
+
+  afterEach(() => {
     fetch.mockClear();
     console.error.mockClear();
   });
 
-  test('Deve buscar o arquivo data.json e retornar o conteúdo estruturado com sucesso', async () => {
+  test('Deve realizar o fetch e retornar os dados formatados corretamente', async () => {
     fetch.mockResolvedValueOnce({
       ok: true,
-      json: async () => mockData,
+      json: async () => mockHealthUnits,
     });
 
-    const units = await getHealthUnitsData();
+    const result = await getHealthUnitsData();
 
     expect(fetch).toHaveBeenCalledWith('./assets/js/healthUnits.json');
-    expect(units).toEqual(mockData);
-    expect(units.length).toBe(2);
+    expect(result).toEqual(mockHealthUnits);
+    expect(result.length).toBe(4);
   });
 
-  test('Deve retornar um array vazio e logar erro se a chamada de rede falhar', async () => {
-    const networkError = new Error('Failed to fetch data due to network issues');
+  test('Deve capturar erros de rede (Network Error) e retornar array vazio', async () => {
+    const networkError = new Error('Falha de conexão');
     fetch.mockRejectedValueOnce(networkError);
 
-    const units = await getHealthUnitsData();
+    const result = await getHealthUnitsData();
 
-    expect(units).toEqual([]);
+    expect(result).toEqual([]);
     expect(console.error).toHaveBeenCalledWith('Error loading health units data:', networkError);
   });
 
-  test('Deve retornar um array vazio e logar erro se a resposta HTTP não for 200', async () => {
-    const httpError = new Error('HTTP error 404 (Not Found)');
+  test('Deve tratar respostas HTTP não-sucesso (ex: 404, 500) retornando array vazio', async () => {
+    // Simulamos uma resposta válida do fetch, mas com status de erro
     fetch.mockResolvedValueOnce({
       ok: false,
       status: 404,
+      statusText: 'Not Found',
       json: async () => ({}),
     });
 
-    const units = await getHealthUnitsData();
+    const result = await getHealthUnitsData();
 
-    expect(units).toEqual([]);
-    expect(console.error).toHaveBeenCalledWith('Error loading health units data:', httpError);
+    expect(result).toEqual([]);
+    expect(console.error).toHaveBeenCalledWith(
+      expect.stringContaining('Error loading health units data:'),
+      expect.any(Error)
+    );
+  });
+});
+
+describe('Função [ getAllSpecialties ]', () => {
+  test('Deve retornar lista única e ordenada de especialidades', () => {
+    const expected = [
+      'Cardiologia',
+      'Cirurgia',
+      'Clínica Geral',
+      'Ginecologia',
+      'Odontologia',
+      'Ortopedia',
+      'Pediatria',
+      'Psicologia',
+      'Traumatologia',
+    ];
+    const result = getAllSpecialties(mockHealthUnits);
+
+    expect(result).toEqual(expected);
+    expect(result).toHaveLength(expected.length);
+  });
+
+  test('Deve lidar robustamente com entradas inválidas (retornando array vazio)', () => {
+    expect(getAllSpecialties([])).toEqual([]);
+    expect(getAllSpecialties(null)).toEqual([]);
+    expect(getAllSpecialties(undefined)).toEqual([]);
+  });
+});
+
+describe('Função [ getUnitTypes ]', () => {
+  test('Deve retornar lista única e ordenada de tipos de unidade', () => {
+    const expected = ['Hospital', 'UBS', 'UPA'];
+    const result = getUnitTypes(mockHealthUnits);
+
+    expect(result).toEqual(expected);
+  });
+
+  test('Deve lidar robustamente com entradas inválidas (retornando array vazio)', () => {
+    expect(getUnitTypes([])).toEqual([]);
+    expect(getUnitTypes(null)).toEqual([]);
+    expect(getUnitTypes(undefined)).toEqual([]);
   });
 });

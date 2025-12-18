@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, jest } from '@jest/globals';
-import { filterHealthUnits } from '../../assets/js/app.js';
+import { filterHealthUnits } from '../../assets/js/healthUnitsFilter.js';
 import { mockData, workingTimeMockData } from '../fixtures/mockData/healthUnitsFilter.js';
 
 describe('Função [ filterHealthUnits ]', () => {
