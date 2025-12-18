@@ -10,7 +10,7 @@
       "is24h": false
     },
     "location": {
-      "streetAddress": "Quadra 01, Área Especial",
+      "streetAddress": "Quadra 01 Área Especial",
       "neighborhood": "Valparaíso I",
       "city": "Valparaíso de Goiás",
       "state": "GO",
@@ -32,7 +32,7 @@
       "is24h": true
     },
     "location": {
-      "streetAddress": "Av. dos Ipês, Quadra 15",
+      "streetAddress": "Av. dos Ipês Quadra 15",
       "neighborhood": "Céu Azul",
       "city": "Valparaíso de Goiás",
       "state": "GO",
@@ -54,7 +54,7 @@
       "is24h": true
     },
     "location": {
-      "streetAddress": "Rua do Comércio, Setor Central",
+      "streetAddress": "Rua do Comércio",
       "neighborhood": "Setor Central",
       "city": "Valparaíso de Goiás",
       "state": "GO",

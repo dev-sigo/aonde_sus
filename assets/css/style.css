@@ -1,0 +1,258 @@
+/* ==========================================================================
+   1. VARIÁVEIS (DESIGN TOKENS)
+   ========================================================================== */
+:root {
+  /* Brand Colors */
+  --color-primary: #0056b3;
+  --color-primary-dark: #004494;
+  --color-accent: #007bff;
+
+  /* Neutral Colors */
+  --color-bg: #f8f9fa;
+  --color-surface: #ffffff;
+  --color-border: #dee2e6;
+  --color-divider: #e9ecef;
+  --color-text-main: #333333;
+  --color-text-muted: #6c757d;
+
+  /* Feedback Colors */
+  --color-success: #28a745;
+  --color-error: #dc3545;
+  --color-warning-bg: #fff3cd;
+  --color-warning-text: #856404;
+
+  /* Spacing & Layout */
+  --spacing-unit: 1rem;
+  --radius-md: 8px;
+  --shadow-sm: 0 4px 8px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 6px 12px rgba(0, 0, 0, 0.1);
+  --transition-fast: 0.2s ease;
+}
+
+/* ==========================================================================
+   2. RESET & BASE
+   ========================================================================== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family:
+    'Segoe UI',
+    system-ui,
+    -apple-system,
+    sans-serif;
+  background-color: var(--color-bg);
+  color: var(--color-text-main);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-unit);
+}
+
+.sr-only {
+  /* Acessibilidade: Invisível visualmente, visível para leitores */
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+/* ==========================================================================
+   3. COMPONENTES (BEM)
+   ========================================================================== */
+
+/* --- Header --- */
+.header {
+  background-color: var(--color-surface);
+  padding: 3rem 0;
+  text-align: center;
+  border-bottom: 1px solid var(--color-border);
+  margin-bottom: 2rem;
+}
+
+.header__title {
+  color: var(--color-primary);
+  font-size: 2.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.header__subtitle {
+  color: var(--color-text-muted);
+  font-size: 1.1rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 2rem;
+  color: var(--color-text-muted);
+  font-size: 0.85rem;
+  margin-top: 3rem;
+}
+
+.footer__link {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+/* --- Form de Filtros --- */
+.filter-form {
+  background: var(--color-surface);
+  padding: 1.5rem;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  align-items: flex-end;
+}
+
+.filter-form__group {
+  flex: 1;
+  min-width: 200px;
+}
+
+.filter-form__label {
+  display: block;
+  font-weight: 600;
+  font-size: 0.875rem;
+  margin-bottom: 0.5rem;
+}
+
+.filter-form__select {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background-color: var(--color-surface);
+  font-size: 1rem;
+  transition: border-color var(--transition-fast);
+}
+
+.filter-form__select:focus {
+  outline: none;
+  border-color: var(--color-accent);
+}
+
+/* --- Botões --- */
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-md);
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.btn--primary {
+  background-color: var(--color-primary);
+  color: white;
+}
+
+.btn--primary:hover {
+  background-color: var(--color-primary-dark);
+}
+
+.btn--primary:active {
+  transform: translateY(1px);
+}
+
+/* --- Badges --- */
+.badge {
+  display: inline-block;
+  background: #eef2f7;
+  color: var(--color-primary);
+  padding: 0.2rem 0.6rem;
+  border-radius: 15px;
+  font-size: 0.8rem;
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+/* --- Divider --- */
+.divider {
+  border: 0;
+  height: 1px;
+  background-color: var(--color-divider);
+  margin: 24px 0;
+}
+
+/* --- Grid & Cards de Unidades --- */
+.units-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.unit-card {
+  background: var(--color-surface);
+  padding: 1.5rem;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  border-left: 4px solid var(--color-accent);
+  transition:
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+.unit-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.unit-card__name {
+  color: var(--color-primary);
+  margin-bottom: 0.5rem;
+}
+
+.unit-card__address {
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+  margin-bottom: 0.625rem;
+}
+
+/* --- Estados e utilitários --- */
+.feedback-message {
+  background-color: var(--color-warning-bg);
+  color: var(--color-warning-text);
+  padding: 1rem;
+  border-radius: var(--radius-md);
+  text-align: center;
+  border: 1px solid #ffeeba;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* ==========================================================================
+   4. RESPONSIVIDADE
+   ========================================================================== */
+@media (max-width: 768px) {
+  .filter-form {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .filter-form__group {
+    width: 100%;
+  }
+}

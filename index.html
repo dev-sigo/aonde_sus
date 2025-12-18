@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Localize unidades de saúde do SUS por especialidade e tipo de atendimento." />
+    <title>Aonde SUS | Encontre sua Unidade de Saúde</title>
+
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <link rel="shortcut icon" href="assets/img/favicon.jpg" type="image/x-icon" />
+
+    <script type="module" src="./assets/js/app.js" defer></script>
+  </head>
+  <body>
+    <header class="header" role="banner">
+      <div class="container header__content">
+        <h1 class="header__title">Aonde SUS</h1>
+        <p class="header__subtitle">
+          Encontre a unidade de saúde certa para a sua necessidade, sem deslocamentos desnecessários.
+        </p>
+      </div>
+    </header>
+
+    <main class="container" id="main-content">
+      <section class="search-filters" aria-labelledby="filters-title">
+        <h2 id="filters-title" class="sr-only">Filtros de busca</h2>
+
+        <form id="filter-form" class="filter-form">
+          <div class="filter-form__group">
+            <label for="specialty" class="filter-form__label">Especialidade Médica</label>
+            <select id="specialty" name="specialty" class="filter-form__select">
+              <option value="" disabled selected>Selecione uma especialidade</option>
+            </select>
+          </div>
+
+          <div class="filter-form__group">
+            <label for="unit-type" class="filter-form__label">Tipo de Unidade</label>
+            <select id="unit-type" name="unit-type" class="filter-form__select">
+              <option value="" disabled selected>Selecione o tipo de unidade</option>
+            </select>
+          </div>
+
+          <div class="filter-form__group">
+            <label for="open-now" class="filter-form__label">Status de Atendimento</label>
+            <select id="open-now" name="open-now" class="filter-form__select">
+              <option value="all">Qualquer horário</option>
+              <option value="true">Aberto Agora</option>
+            </select>
+          </div>
+
+          <button type="submit" class="btn btn--primary">Filtrar Unidades</button>
+        </form>
+      </section>
+
+      <hr class="divider" />
+
+      <section class="results" aria-live="polite">
+        <header class="results__header">
+          <h2 id="results-count" class="results__title">Aguardando busca...</h2>
+        </header>
+
+        <div id="units-list" class="units-grid"></div>
+
+        <div id="no-results" class="feedback-message hidden" role="alert">
+          <p>Não encontramos unidades com os filtros selecionados. Tente ajustar sua busca.</p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>Projeto focado em transparência e saúde pública.</p>
+        <nav class="footer__nav">
+          <a
+            href="https://github.com/dev-sigo/aonde_sus"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="footer__link">
+            Ver Repositório no GitHub
+          </a>
+        </nav>
+      </div>
+    </footer>
+
+    <template id="unit-card-template">
+      <article class="unit-card">
+        <h3 class="unit-card__name"></h3>
+        <p class="unit-card__address"></p>
+        <span class="unit-card__status"></span>
+      </article>
+    </template>
+  </body>
+</html>
