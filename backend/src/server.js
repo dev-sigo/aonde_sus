@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import 'dotenv/config';
 
 import { app } from './app.js';
 import { setUnitsData } from './services/healthUnits.service.js';
