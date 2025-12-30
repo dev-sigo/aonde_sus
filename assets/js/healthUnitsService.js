@@ -1,67 +1,23 @@
-const DATA_URL = './assets/js/healthUnits.json';
+const API_BASE_URL = 'http://localhost:3000';
 
-/**
- * Busca e carrega a lista de unidades de saúde de forma segura,
- * garantindo que a aplicação não pare de funcionar (quebrar)
- * em caso de falhas de conexão ou erros de servidor.
- *
- * @returns {Promise<Array>} Retorna a lista de unidades ou um array vazio se houver erro.
- */
-export async function getHealthUnitsData() {
-  try {
-    const response = await fetch(DATA_URL);
+export async function getHealthUnits(filters = {}) {
+  const params = new URLSearchParams(filters);
 
-    if (!response.ok) {
-      throw new Error(`HTTP error ${response.status} (Not Found)`);
-    }
+  const response = await fetch(`${API_BASE_URL}/health-units?${params}`);
 
-    return await response.json();
-  } catch (error) {
-    console.error('Error loading health units data:', error);
-    return [];
+  if (!response.ok) {
+    throw new Error('Erro ao buscar unidades');
   }
+
+  return response.json();
 }
 
-/**
- * Extrai todos os tipos únicos de unidade de saúde (ex: UBS, UPA...).
- * @param {Array<object>} units - O array de unidades de saúde.
- * @returns {Array<string>} Retorna um array de strings com os tipos únicos.
- */
-export function getUnitTypes(units) {
-  if (!Array.isArray(units) || units.length === 0) {
-    return [];
-  }
-
-  const uniqueTypes = new Set();
-
-  units.forEach((unit) => {
-    if (unit.type) {
-      uniqueTypes.add(unit.type);
-    }
-  });
-
-  return Array.from(uniqueTypes).sort();
+export async function getSpecialties() {
+  const response = await fetch(`${API_BASE_URL}/specialties`);
+  return response.json();
 }
 
-/**
- * Extrai todas as especialidades médicas únicas disponíveis nas unidades.
- * @param {Array<object>} units - O array de unidades de saúde.
- * @returns {Array<string>} Retorna um array de strings com as especialidades únicas.
- */
-export function getAllSpecialties(units) {
-  if (!Array.isArray(units) || units.length === 0) {
-    return [];
-  }
-
-  const uniqueSpecialties = new Set();
-
-  units.forEach((unit) => {
-    if (Array.isArray(unit.specialties)) {
-      unit.specialties.forEach((spec) => {
-        uniqueSpecialties.add(spec);
-      });
-    }
-  });
-
-  return Array.from(uniqueSpecialties).sort();
+export async function getUnitTypes() {
+  const response = await fetch(`${API_BASE_URL}/unit-types`);
+  return response.json();
 }
